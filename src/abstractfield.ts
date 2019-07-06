@@ -1,3 +1,5 @@
+import {Option} from './option'
+
 export class AbstractField {
   id :string = ''
   name :string = ''
@@ -26,7 +28,7 @@ export class AbstractField {
     this.value = value
   }
 
-  setOptions(options :Array<any>) :void {
-    this.options = options
+  addOption(option :Option) :void {
+    this.options.push(option)
   }
 }

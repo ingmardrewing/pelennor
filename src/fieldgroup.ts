@@ -17,27 +17,26 @@ export class FieldGroup {
   }
 
   renderFieldsForReading() :string {
-    let fieldsHtml = ""
+    let fieldsHtml :Array<string> = []
     for (let f of this.fields){
-      fieldsHtml += f.renderForReading()
+      fieldsHtml.push(f.renderForReading())
     }
-    return fieldsHtml
+    return fieldsHtml.join("\n")
   }
 
   renderForEditing():string {
-    let fieldsHtml :string = this.renderFieldsForEditing()
     return `<form id="${this.id}">
-  ${fieldsHtml}
+${this.renderFieldsForEditing()}
   <a id="${this.id}-save">save</a>
   <a id="${this.id}-cancel">cancel</a>
 </form>`
   }
 
   renderFieldsForEditing() :string {
-    let fieldsHtml = ""
+    let fieldsHtml :Array<string> = []
     for (let f of this.fields){
-      fieldsHtml += f.renderForEditing()
+      fieldsHtml.push(f.renderForEditing())
     }
-    return fieldsHtml
+    return fieldsHtml.join("\n")
   }
 }
