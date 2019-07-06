@@ -1,24 +1,24 @@
-import { Select } from './select';
 import { Option } from './option';
+import { Select } from './select';
 
 test('Select', () => {
-  let s = new Select();
+  const s = new Select();
   s.setId('test-id');
   s.setName('test-name');
   s.setLabel('test-label');
   s.setValue('opt-value-2');
 
-  let o1 = new Option();
+  const o1 = new Option();
   o1.setLabel('opt-label-1');
   o1.setValue('opt-value-1');
   s.addOption(o1);
 
-  let o2 = new Option();
+  const o2 = new Option();
   o2.setLabel('opt-label-2');
   o2.setValue('opt-value-2');
   s.addOption(o2);
 
-  let o3 = new Option();
+  const o3 = new Option();
   o3.setLabel('opt-label-3');
   o3.setValue('opt-value-3');
   s.addOption(o3);

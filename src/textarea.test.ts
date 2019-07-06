@@ -1,7 +1,7 @@
 import { TextArea } from './textarea';
 
 test('TextField', () => {
-  let ta = new TextArea();
+  const ta = new TextArea();
   ta.setId('test-id');
   ta.setName('test-name');
   ta.setLabel('test-label');

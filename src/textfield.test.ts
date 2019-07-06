@@ -1,7 +1,7 @@
 import { TextField } from './textfield';
 
 test('TextField', () => {
-  let tf = new TextField();
+  const tf = new TextField();
   tf.setId('test-id');
   tf.setName('test-name');
   tf.setLabel('test-label');

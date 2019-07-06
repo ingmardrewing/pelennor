@@ -1,30 +1,30 @@
-import { Renderable } from './renderable';
+import { IRenderable } from './renderable';
 
-export class FieldGroup {
-  id: string = '';
-  fields: Array<Renderable> = new Array<Renderable>();
+export class FieldGroup implements IRenderable {
+  public id: string = '';
+  public fields: IRenderable[] = [];
 
-  setId(id: string) {
+  public setId(id: string) {
     this.id = id;
   }
 
-  addField(field: Renderable) {
+  public addField(field: IRenderable) {
     this.fields.push(field);
   }
 
-  renderForReading(): string {
+  public renderForReading(): string {
     return `<div>${this.renderFieldsForReading()}</div>`;
   }
 
-  renderFieldsForReading(): string {
-    let fieldsHtml: Array<string> = [];
-    for (let f of this.fields) {
+  public renderFieldsForReading(): string {
+    const fieldsHtml: string[] = [];
+    for (const f of this.fields) {
       fieldsHtml.push(f.renderForReading());
     }
     return fieldsHtml.join('\n');
   }
 
-  renderForEditing(): string {
+  public renderForEditing(): string {
     return `<form id="${this.id}">
 ${this.renderFieldsForEditing()}
   <a id="${this.id}-save">save</a>
@@ -32,9 +32,9 @@ ${this.renderFieldsForEditing()}
 </form>`;
   }
 
-  renderFieldsForEditing(): string {
-    let fieldsHtml: Array<string> = [];
-    for (let f of this.fields) {
+  public renderFieldsForEditing(): string {
+    const fieldsHtml: string[] = [];
+    for (const f of this.fields) {
       fieldsHtml.push(f.renderForEditing());
     }
     return fieldsHtml.join('\n');

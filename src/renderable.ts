@@ -1,4 +1,4 @@
-export interface Renderable {
+export interface IRenderable {
   renderForReading(): string;
   renderForEditing(): string;
 }

@@ -1,7 +1,7 @@
 import { Image } from './image';
 
 test('Image', () => {
-  let img = new Image();
+  const img = new Image();
   img.setId('test-id');
   img.setName('test-name');
   img.setLabel('test-label');
@@ -10,12 +10,11 @@ test('Image', () => {
   expect(img.renderForReading()).toBe(
     `<div class="fieldDisplay">
     <img src="test-data-url">
-</div>`);
+</div>`,
+  );
 
-  expect(
-    img.renderForEditing()
-  ).toBe(
-  `<div class="fieldDisplay">
+  expect(img.renderForEditing()).toBe(
+    `<div class="fieldDisplay">
       <input type="text" id="test-id" value="test-data-url" />
       <input type="file" id="test-id-picker" />
       <script>
@@ -31,7 +30,6 @@ test('Image', () => {
           reader.readAsDataURL(filePicker.files[0]);
         });
       </script>
-    <div>`
+    <div>`,
   );
-
 });

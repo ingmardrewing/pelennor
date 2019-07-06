@@ -1,15 +1,15 @@
 import { FieldGroup } from './fieldgroup';
-import { TextField } from './textfield';
-import { TextArea } from './textarea';
-import { Select } from './select';
-import { Option } from './option';
 import { Image } from './image';
+import { Option } from './option';
+import { Select } from './select';
+import { TextArea } from './textarea';
+import { TextField } from './textfield';
 
 test('FieldGroup rendering', () => {
-  let fg = new FieldGroup();
+  const fg = new FieldGroup();
   fg.setId('test-id');
 
-  let tf = new TextField();
+  const tf = new TextField();
   tf.setId('field-id');
   tf.setLabel('field-label');
   tf.setName('field-name');
@@ -17,7 +17,7 @@ test('FieldGroup rendering', () => {
 
   fg.addField(tf);
 
-  let ta = new TextArea();
+  const ta = new TextArea();
   ta.setId('ta-field-id');
   ta.setLabel('ta-field-label');
   ta.setName('ta-field-name');
@@ -25,30 +25,30 @@ test('FieldGroup rendering', () => {
 
   fg.addField(ta);
 
-  let s = new Select();
+  const s = new Select();
   s.setId('test-id');
   s.setName('test-name');
   s.setLabel('select-label');
   s.setValue('opt-value-2');
 
-  let o1 = new Option();
+  const o1 = new Option();
   o1.setLabel('opt-label-1');
   o1.setValue('opt-value-1');
   s.addOption(o1);
 
-  let o2 = new Option();
+  const o2 = new Option();
   o2.setLabel('opt-label-2');
   o2.setValue('opt-value-2');
   s.addOption(o2);
 
-  let o3 = new Option();
+  const o3 = new Option();
   o3.setLabel('opt-label-3');
   o3.setValue('opt-value-3');
   s.addOption(o3);
 
   fg.addField(s);
 
-  let img = new Image();
+  const img = new Image();
   img.setId('test-id');
   img.setName('test-name');
   img.setLabel('test-label');
