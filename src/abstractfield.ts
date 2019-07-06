@@ -6,7 +6,7 @@ export class AbstractField {
   label: string = '';
   description: string = '';
   value: any = null;
-  options: Array<any> = [];
+  options: Array<Option> = [];
 
   setId(id: string) {
     this.id = id;

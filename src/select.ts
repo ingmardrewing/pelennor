@@ -22,7 +22,7 @@ ${this.renderOptionsForEditing()}
     let optionsHtml: Array<string> = [];
     for (let o of this.options) {
       if (o.value == this.value) {
-        o.setDefault();
+        o.setSelected();
       }
       optionsHtml.push(o.renderForEditing());
     }
