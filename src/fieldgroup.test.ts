@@ -3,6 +3,7 @@ import { TextField } from './textfield';
 import { TextArea } from './textarea';
 import { Select } from './select';
 import { Option } from './option';
+import { Image } from './image';
 
 test('FieldGroup rendering', () => {
   let fg = new FieldGroup();
@@ -47,6 +48,14 @@ test('FieldGroup rendering', () => {
 
   fg.addField(s);
 
+  let img = new Image();
+  img.setId('test-id');
+  img.setName('test-name');
+  img.setLabel('test-label');
+  img.setValue('test-data-url');
+
+  fg.addField(img);
+
   expect(fg.renderForEditing()).toBe(
     `<form id="test-id">
 <div class="fieldEdit">
@@ -65,6 +74,23 @@ test('FieldGroup rendering', () => {
 <option value="opt-value-3">opt-label-3</option>
 </select>
 </div>
+<div class="fieldDisplay">
+      <input type="text" id="test-id" value="test-data-url" />
+      <input type="file" id="test-id-picker" />
+      <script>
+        let imgPicker = document.querySelector('#test-id-picker');
+        imgPicker.addEventListener('change',function(e){
+          let filePicker = e.target;
+
+          let reader = new FileReader();
+          reader.addEventListener("load", function(loaded){
+            let dataUrlInput = document.querySelector('#test-id');
+            dataUrlInput.val(reader.result.toString());
+          }, false);
+          reader.readAsDataURL(filePicker.files[0]);
+        });
+      </script>
+    <div>
   <a id="test-id-save">save</a>
   <a id="test-id-cancel">cancel</a>
 </form>`,
@@ -82,6 +108,9 @@ test('FieldGroup rendering', () => {
 <div class="fieldDisplay">
     <div class="fieldLabel">select-label:</div>
     <div class="fieldValue">opt-value-2</div>
+</div>
+<div class="fieldDisplay">
+    <img src="test-data-url">
 </div></div>`,
   );
 });
