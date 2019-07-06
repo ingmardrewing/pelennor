@@ -1,4 +1,4 @@
 export interface Renderable {
-  renderForReading() :string
-  renderForEditing() :string
+  renderForReading(): string;
+  renderForEditing(): string;
 }

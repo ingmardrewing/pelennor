@@ -1,7 +1,7 @@
 import { AbstractField } from './abstractfield';
 import { Renderable } from './renderable';
 
-export class TextField extends AbstractField implements Renderable {
+export class TextArea extends AbstractField implements Renderable {
   renderForReading(): string {
     return `<div class="fieldDisplay">
     <div class="fieldLabel">${this.label}:</div>
@@ -12,7 +12,7 @@ export class TextField extends AbstractField implements Renderable {
   renderForEditing(): string {
     return `<div class="fieldEdit">
     <label for="${this.id}">${this.label}</label>
-    <input id="${this.id}" name="${this.name}" type="text" value="${this.value}" />
+    <textarea id="${this.id}" name="${this.name}">${this.value}</textarea />
 </div>`;
   }
 }

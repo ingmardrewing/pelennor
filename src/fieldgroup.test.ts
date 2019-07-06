@@ -1,50 +1,61 @@
 import { FieldGroup } from './fieldgroup';
-import {TextField} from './textfield'
-import {Select} from './select'
-import {Option} from './option'
+import { TextField } from './textfield';
+import { TextArea } from './textarea';
+import { Select } from './select';
+import { Option } from './option';
 
 test('FieldGroup rendering', () => {
-  let fg = new FieldGroup()
-  fg.setId("test-id")
+  let fg = new FieldGroup();
+  fg.setId('test-id');
 
-  let tf = new TextField()
-  tf.setId("field-id")
-  tf.setLabel("field-label")
-  tf.setName("field-name")
-  tf.setValue("field-value")
+  let tf = new TextField();
+  tf.setId('field-id');
+  tf.setLabel('field-label');
+  tf.setName('field-name');
+  tf.setValue('field-value');
 
-  fg.addField(tf)
+  fg.addField(tf);
 
-  let s = new Select()
-  s.setId('test-id')
-  s.setName('test-name')
-  s.setLabel('select-label')
-  s.setValue('opt-value-2')
+  let ta = new TextArea();
+  ta.setId('ta-field-id');
+  ta.setLabel('ta-field-label');
+  ta.setName('ta-field-name');
+  ta.setValue('ta-field-value');
 
-  let o1 = new Option()
-  o1.setLabel("opt-label-1")
-  o1.setValue("opt-value-1")
-  s.addOption(o1)
+  fg.addField(ta);
 
-  let o2 = new Option()
-  o2.setLabel("opt-label-2")
-  o2.setValue("opt-value-2")
-  s.addOption(o2)
+  let s = new Select();
+  s.setId('test-id');
+  s.setName('test-name');
+  s.setLabel('select-label');
+  s.setValue('opt-value-2');
 
-  let o3 = new Option()
-  o3.setLabel("opt-label-3")
-  o3.setValue("opt-value-3")
-  s.addOption(o3)
+  let o1 = new Option();
+  o1.setLabel('opt-label-1');
+  o1.setValue('opt-value-1');
+  s.addOption(o1);
 
-  fg.addField(s)
+  let o2 = new Option();
+  o2.setLabel('opt-label-2');
+  o2.setValue('opt-value-2');
+  s.addOption(o2);
 
-  expect(
-    fg.renderForEditing()
-  ).toBe(
-`<form id="test-id">
+  let o3 = new Option();
+  o3.setLabel('opt-label-3');
+  o3.setValue('opt-value-3');
+  s.addOption(o3);
+
+  fg.addField(s);
+
+  expect(fg.renderForEditing()).toBe(
+    `<form id="test-id">
 <div class="fieldEdit">
     <label for="field-id">field-label</label>
     <input id="field-id" name="field-name" type="text" value="field-value" />
+</div>
+<div class="fieldEdit">
+    <label for="ta-field-id">ta-field-label</label>
+    <textarea id="ta-field-id" name="ta-field-name">ta-field-value</textarea />
 </div>
 <div class="fieldEdit">
     <label for="test-id">select-label</label>
@@ -56,19 +67,21 @@ test('FieldGroup rendering', () => {
 </div>
   <a id="test-id-save">save</a>
   <a id="test-id-cancel">cancel</a>
-</form>`
+</form>`,
   );
 
-  expect(
-    fg.renderForReading()
-  ).toBe(
-`<div><div class="fieldDisplay">
+  expect(fg.renderForReading()).toBe(
+    `<div><div class="fieldDisplay">
     <div class="fieldLabel">field-label:</div>
     <div class="fieldValue">field-value</div>
 </div>
 <div class="fieldDisplay">
+    <div class="fieldLabel">ta-field-label:</div>
+    <div class="fieldValue">ta-field-value</div>
+</div>
+<div class="fieldDisplay">
     <div class="fieldLabel">select-label:</div>
     <div class="fieldValue">opt-value-2</div>
-</div></div>`
+</div></div>`,
   );
 });
