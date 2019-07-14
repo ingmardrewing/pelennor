@@ -1,5 +1,5 @@
 import { AbstractField } from './abstractfield';
-import { IRenderable } from './renderable';
+import { IRenderable } from './irenderable';
 
 export class Image extends AbstractField implements IRenderable {
   public renderForReading(): string {

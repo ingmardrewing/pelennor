@@ -1,6 +1,6 @@
 import { AbstractField } from './abstractfield';
+import { IRenderable } from './irenderable';
 import { Option } from './option';
-import { IRenderable } from './renderable';
 
 export class CheckBoxes extends AbstractField implements IRenderable {
   public addOption(opt: Option): void {

@@ -1,4 +1,4 @@
-import { IRenderable } from './renderable';
+import { IRenderable } from './irenderable';
 
 export class Option implements IRenderable {
   public label: string = '';

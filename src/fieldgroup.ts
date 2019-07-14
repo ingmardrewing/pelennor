@@ -1,4 +1,4 @@
-import { IRenderable } from './renderable';
+import { IRenderable } from './irenderable';
 
 export class FieldGroup implements IRenderable {
   public id: string = '';

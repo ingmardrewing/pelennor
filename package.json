@@ -2,7 +2,8 @@
   "name": "pelennor",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc --lib es6",
     "test": "jest --config jestconfig.js",
