@@ -1,15 +1,15 @@
 import { IRenderable } from './irenderable';
 
 export class FieldGroup implements IRenderable {
-  public id: string = ''
-  public fields: IRenderable[] = []
+  public id: string = '';
+  public fields: IRenderable[] = [];
 
-  private saveFn :() => void
-  private cancelFn :() => void
+  private saveFn: () => void;
+  private cancelFn: () => void;
 
-  constructor(saveFn :() =>void, cancelFn :()=>void) {
-    this.saveFn = saveFn
-    this.cancelFn = cancelFn
+  constructor(saveFn: () => void, cancelFn: () => void) {
+    this.saveFn = saveFn;
+    this.cancelFn = cancelFn;
   }
 
   public setId(id: string) {
@@ -32,12 +32,16 @@ export class FieldGroup implements IRenderable {
     const save: HTMLElement = document.createElement('a');
     save.setAttribute('id', `${this.id}-save`);
     save.textContent = 'save';
-    save.addEventListener("click", () =>{this.saveFn()})
+    save.addEventListener('click', () => {
+      this.saveFn();
+    });
 
     const cancel: HTMLElement = document.createElement('a');
     cancel.setAttribute('id', `${this.id}-cancel`);
     cancel.textContent = 'cancel';
-    save.addEventListener("click", ()=>{this.cancelFn()})
+    save.addEventListener('click', () => {
+      this.cancelFn();
+    });
 
     const form: HTMLElement = document.createElement('form');
     form.setAttribute('id', this.id);
