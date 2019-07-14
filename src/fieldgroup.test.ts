@@ -6,7 +6,10 @@ import { TextArea } from './textarea';
 import { TextField } from './textfield';
 
 test('FieldGroup rendering', () => {
-  const fg = new FieldGroup();
+  const fg = new FieldGroup(
+    () => {},
+    () => {}
+  );
   fg.setId('test-id');
 
   const tf = new TextField();
