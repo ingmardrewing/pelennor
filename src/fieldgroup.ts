@@ -1,8 +1,16 @@
 import { IRenderable } from './irenderable';
 
 export class FieldGroup implements IRenderable {
-  public id: string = '';
-  public fields: IRenderable[] = [];
+  public id: string = ''
+  public fields: IRenderable[] = []
+
+  private saveFn :() => void
+  private cancelFn :() => void
+
+  constructor(saveFn :() =>void, cancelFn :()=>void) {
+    this.saveFn = saveFn
+    this.cancelFn = cancelFn
+  }
 
   public setId(id: string) {
     this.id = id;
@@ -22,12 +30,14 @@ export class FieldGroup implements IRenderable {
 
   public prepareForEditing(): HTMLElement {
     const save: HTMLElement = document.createElement('a');
-    save.setAttribute('id', this.cssIdForElementClickedToSave());
+    save.setAttribute('id', `${this.id}-save`);
     save.textContent = 'save';
+    save.addEventListener("click", () =>{this.saveFn()})
 
     const cancel: HTMLElement = document.createElement('a');
-    cancel.setAttribute('id', this.cssIdForElementClickedToCancel());
+    cancel.setAttribute('id', `${this.id}-cancel`);
     cancel.textContent = 'cancel';
+    save.addEventListener("click", ()=>{this.cancelFn()})
 
     const form: HTMLElement = document.createElement('form');
     form.setAttribute('id', this.id);
@@ -37,14 +47,6 @@ export class FieldGroup implements IRenderable {
     form.appendChild(save);
     form.appendChild(cancel);
     return form;
-  }
-
-  public cssIdForElementClickedToSave(): string {
-    return `${this.id}-save`;
-  }
-
-  public cssIdForElementClickedToCancel(): string {
-    return `${this.id}-cancel`;
   }
 
   public storeInput(): void {
