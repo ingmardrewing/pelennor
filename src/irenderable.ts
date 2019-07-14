@@ -1,4 +1,5 @@
 export interface IRenderable {
-  renderForReading(): string;
-  renderForEditing(): string;
+  prepareForReading(): HTMLElement;
+  prepareForEditing(): HTMLElement;
+  storeInput(): void;
 }

@@ -2,30 +2,24 @@ import { AbstractField } from './abstractfield';
 import { IRenderable } from './irenderable';
 
 export class Select extends AbstractField implements IRenderable {
-  public renderForReading(): string {
-    return `<div class="fieldDisplay">
-    <div class="fieldLabel">${this.label}:</div>
-    <div class="fieldValue">${this.value}</div>
-</div>`;
+  public prepareForEditing(): HTMLElement {
+    const label: HTMLElement = this.getLabel();
+    const select: HTMLElement = this.getSelect();
+    const container: HTMLElement = this.getContainerElement('fieldEdit');
+    container.appendChild(label);
+    container.appendChild(select);
+    return container;
   }
 
-  public renderForEditing(): string {
-    return `<div class="fieldEdit">
-    <label for="${this.id}">${this.label}</label>
-<select id="${this.id}">
-${this.renderOptionsForEditing()}
-</select>
-</div>`;
-  }
-
-  public renderOptionsForEditing(): string {
-    const optionsHtml: string[] = [];
+  public getSelect(): HTMLElement {
+    const select: HTMLElement = document.createElement('select');
+    select.setAttribute('id', this.id);
     for (const o of this.options) {
       if (o.value === this.value) {
         o.setSelected();
       }
-      optionsHtml.push(o.renderForEditing());
+      select.appendChild(o.prepareForEditing());
     }
-    return optionsHtml.join('\n');
+    return select;
   }
 }

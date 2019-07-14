@@ -11,26 +11,26 @@ test('Select', () => {
   const o1 = new Option();
   o1.setLabel('opt-label-1');
   o1.setValue('opt-value-1');
+
   s.addOption(o1);
 
-  const o2 = new Option();
-  o2.setLabel('opt-label-2');
-  o2.setValue('opt-value-2');
-  s.addOption(o2);
+  expect(s.prepareForEditing().outerHTML).toBe(
+    `<div class="fieldEdit">` +
+      '<label for="test-id">test-label:</label>' +
+      '<select id="test-id">' +
+      '<option value="opt-value-1">opt-label-1</option>' +
+      '</select>' +
+      '</div>',
+  );
 
-  const o3 = new Option();
-  o3.setLabel('opt-label-3');
-  o3.setValue('opt-value-3');
-  s.addOption(o3);
+  o1.setSelected();
 
-  expect(s.renderForEditing()).toBe(
-    `<div class="fieldEdit">
-    <label for="test-id">test-label</label>
-<select id="test-id">
-<option value="opt-value-1">opt-label-1</option>
-<option value="opt-value-2" selected="selected">opt-label-2</option>
-<option value="opt-value-3">opt-label-3</option>
-</select>
-</div>`,
+  expect(s.prepareForEditing().outerHTML).toBe(
+    `<div class="fieldEdit">` +
+      '<label for="test-id">test-label:</label>' +
+      '<select id="test-id">' +
+      '<option value="opt-value-1" selected="selected">opt-label-1</option>' +
+      '</select>' +
+      '</div>',
   );
 });

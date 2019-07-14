@@ -8,35 +8,35 @@ export class CheckBoxes extends AbstractField implements IRenderable {
     this.options.push(opt);
   }
 
-  public renderForReading(): string {
-    return `<div class="fieldDisplay">
-    <div>${this.label}:</div>
-    <div>${this.renderOptionsForReading()}</div>
-</div>`;
+  public prepareForReading(): HTMLElement {
+    const container: HTMLElement = this.getContainerElement('fieldDisplay');
+    container.appendChild(this.getLabelDiv());
+    container.appendChild(this.getSelectedOptions());
+    return container;
   }
 
-  public renderOptionsForReading(): string {
-    const optionsHtml: string[] = [];
+  public prepareForEditing(): HTMLElement {
+    const container: HTMLElement = this.getContainerElement('fieldEdit');
+    container.appendChild(this.getLabel());
+    container.appendChild(this.getSelectableOptions());
+    return container;
+  }
+
+  private getSelectedOptions(): HTMLElement {
+    const divWrapper: HTMLElement = document.createElement('div');
     for (const o of this.options) {
       if (o.isSelected) {
-        optionsHtml.push(o.renderForReading());
+        divWrapper.appendChild(o.prepareForReading());
       }
     }
-    return optionsHtml.join(',\n');
+    return divWrapper;
   }
 
-  public renderForEditing(): string {
-    return `<div class="fieldEdit">
-    <div>${this.label}:</div>
-    <div>${this.renderOptionsForEditing()}</div>
-</div>`;
-  }
-
-  public renderOptionsForEditing(): string {
-    const optionsHtml: string[] = [];
+  private getSelectableOptions(): HTMLElement {
+    const divWrapper: HTMLElement = document.createElement('div');
     for (const o of this.options) {
-      optionsHtml.push(o.renderForEditing());
+      divWrapper.appendChild(o.prepareForEditing());
     }
-    return optionsHtml.join('\n');
+    return divWrapper;
   }
 }

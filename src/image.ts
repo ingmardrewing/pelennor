@@ -2,32 +2,47 @@ import { AbstractField } from './abstractfield';
 import { IRenderable } from './irenderable';
 
 export class Image extends AbstractField implements IRenderable {
-  public renderForReading(): string {
+  public prepareForReading(): HTMLElement {
     if (this.value) {
-      return `<div class="fieldDisplay">
-    <img src="${this.value}">
-</div>`;
+      const img: HTMLElement = document.createElement('img');
+      img.setAttribute('src', this.value);
+
+      const div: HTMLElement = this.getContainerElement('fieldDisplay');
+      div.appendChild(img);
+      return div;
     }
-    return '';
+    return document.createElement('span');
   }
 
-  public renderForEditing(): string {
-    return `<div class="fieldDisplay">
-      <input type="text" id="${this.id}" value="${this.value}" />
-      <input type="file" id="${this.id}-picker" />
-      <script>
-        let imgPicker = document.querySelector('#${this.id}-picker');
-        imgPicker.addEventListener('change',function(e){
-          let filePicker = e.target;
+  public prepareForEditing(): HTMLElement {
+    const txt: HTMLElement = document.createElement('input');
+    txt.setAttribute('type', 'text');
+    txt.setAttribute('id', this.id);
+    txt.setAttribute('value', this.value);
 
-          let reader = new FileReader();
-          reader.addEventListener("load", function(loaded){
-            let dataUrlInput = document.querySelector('#${this.id}');
+    const picker: HTMLElement = document.createElement('input');
+    picker.setAttribute('type', 'file');
+    picker.setAttribute('id', `${this.id}-picker`);
+    picker.addEventListener('change', (e: any) => {
+      const filePicker = e.target;
+
+      const reader = new FileReader();
+      reader.addEventListener(
+        'load',
+        loaded => {
+          const dataUrlInput: any = document.querySelector('#${this.id}');
+          if (dataUrlInput !== null && reader !== null && reader.result !== null) {
             dataUrlInput.val(reader.result.toString());
-          }, false);
-          reader.readAsDataURL(filePicker.files[0]);
-        });
-      </script>
-    <div>`;
+          }
+        },
+        false,
+      );
+      reader.readAsDataURL(filePicker.files[0]);
+    });
+
+    const div: HTMLElement = this.getContainerElement('fieldEdit');
+    div.appendChild(txt);
+    div.appendChild(picker);
+    return div;
   }
 }

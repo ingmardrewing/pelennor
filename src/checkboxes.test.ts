@@ -11,37 +11,29 @@ test('CheckBoxes', () => {
   o1.setName('opt-1-name');
   o1.setValue('opt-1-value');
   o1.setLabel('opt-1-label');
-  o1.setSelected();
-
-  const o2 = new Option();
-  o2.setName('opt-2-name');
-  o2.setValue('opt-2-value');
-  o2.setLabel('opt-2-label');
-  o2.setSelected();
-
-  const o3 = new Option();
-  o3.setName('opt-3-name');
-  o3.setValue('opt-3-value');
-  o3.setLabel('opt-3-label');
 
   cb.addOption(o1);
-  cb.addOption(o2);
-  cb.addOption(o3);
 
-  expect(cb.renderForEditing()).toBe(
-    `<div class="fieldEdit">
-    <div>test-label:</div>
-    <div><div><input name="opt-1-name" value="opt-1-value" checked="checked">opt-1-label</div>
-<div><input name="opt-2-name" value="opt-2-value" checked="checked">opt-2-label</div>
-<div><input name="opt-3-name" value="opt-3-value">opt-3-label</div></div>
-</div>`,
+  expect(cb.prepareForEditing().outerHTML).toBe(
+    `<div class="fieldEdit">` +
+      '<label for="test-id">test-label:</label>' +
+      '<div><div><input type="checkbox" name="opt-1-name" value="opt-1-value">opt-1-label</div>' +
+      `</div></div>`,
   );
 
-  expect(cb.renderForReading()).toBe(
-    `<div class="fieldDisplay">
-    <div>test-label:</div>
-    <div>opt-1-value,
-opt-2-value</div>
-</div>`,
+  o1.setSelected();
+
+  expect(cb.prepareForEditing().outerHTML).toBe(
+    `<div class="fieldEdit">` +
+      '<label for="test-id">test-label:</label>' +
+      '<div><div><input type="checkbox" name="opt-1-name" value="opt-1-value" checked="checked">opt-1-label</div>' +
+      `</div></div>`,
+  );
+
+  expect(cb.prepareForReading().outerHTML).toBe(
+    `<div class="fieldDisplay">` +
+      '<div class="fieldLabel">test-label:</div>' +
+      '<div><span>opt-1-value</span></div>' +
+      '</div>',
   );
 });

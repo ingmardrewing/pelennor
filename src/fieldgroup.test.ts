@@ -56,61 +56,48 @@ test('FieldGroup rendering', () => {
 
   fg.addField(img);
 
-  expect(fg.renderForEditing()).toBe(
-    `<form id="test-id">
-<div class="fieldEdit">
-    <label for="field-id">field-label</label>
-    <input id="field-id" name="field-name" type="text" value="field-value" />
-</div>
-<div class="fieldEdit">
-    <label for="ta-field-id">ta-field-label</label>
-    <textarea id="ta-field-id" name="ta-field-name">ta-field-value</textarea />
-</div>
-<div class="fieldEdit">
-    <label for="test-id">select-label</label>
-<select id="test-id">
-<option value="opt-value-1">opt-label-1</option>
-<option value="opt-value-2" selected="selected">opt-label-2</option>
-<option value="opt-value-3">opt-label-3</option>
-</select>
-</div>
-<div class="fieldDisplay">
-      <input type="text" id="test-id" value="test-data-url" />
-      <input type="file" id="test-id-picker" />
-      <script>
-        let imgPicker = document.querySelector('#test-id-picker');
-        imgPicker.addEventListener('change',function(e){
-          let filePicker = e.target;
-
-          let reader = new FileReader();
-          reader.addEventListener("load", function(loaded){
-            let dataUrlInput = document.querySelector('#test-id');
-            dataUrlInput.val(reader.result.toString());
-          }, false);
-          reader.readAsDataURL(filePicker.files[0]);
-        });
-      </script>
-    <div>
-  <a id="test-id-save">save</a>
-  <a id="test-id-cancel">cancel</a>
-</form>`,
+  expect(fg.prepareForEditing().outerHTML).toBe(
+    `<form id="test-id">` +
+      '<div class="fieldEdit">' +
+      '<label for="field-id">field-label:</label>' +
+      '<input id="field-id" name="field-name" type="text" value="field-value">' +
+      '</div>' +
+      '<div class="fieldEdit">' +
+      '<label for="ta-field-id">ta-field-label:</label>' +
+      '<textarea id="ta-field-id" name="ta-field-name">ta-field-value</textarea>' +
+      '</div>' +
+      '<div class="fieldEdit">' +
+      '<label for="test-id">select-label:</label>' +
+      '<select id="test-id">' +
+      '<option value="opt-value-1">opt-label-1</option>' +
+      '<option value="opt-value-2" selected="selected">opt-label-2</option>' +
+      '<option value="opt-value-3">opt-label-3</option>' +
+      '</select>' +
+      '</div>' +
+      '<div class="fieldEdit">' +
+      '<input type="text" id="test-id" value="test-data-url">' +
+      '<input type="file" id="test-id-picker">' +
+      '</div>' +
+      '<a id="test-id-save">save</a>' +
+      '<a id="test-id-cancel">cancel</a>' +
+      `</form>`,
   );
 
-  expect(fg.renderForReading()).toBe(
-    `<div><div class="fieldDisplay">
-    <div class="fieldLabel">field-label:</div>
-    <div class="fieldValue">field-value</div>
-</div>
-<div class="fieldDisplay">
-    <div class="fieldLabel">ta-field-label:</div>
-    <div class="fieldValue">ta-field-value</div>
-</div>
-<div class="fieldDisplay">
-    <div class="fieldLabel">select-label:</div>
-    <div class="fieldValue">opt-value-2</div>
-</div>
-<div class="fieldDisplay">
-    <img src="test-data-url">
-</div></div>`,
+  expect(fg.prepareForReading().outerHTML).toBe(
+    `<div><div class="fieldDisplay">` +
+      '<div class="fieldLabel">field-label:</div>' +
+      '<div class="fieldValue">field-value</div>' +
+      '</div>' +
+      '<div class="fieldDisplay">' +
+      '<div class="fieldLabel">ta-field-label:</div>' +
+      '<div class="fieldValue">ta-field-value</div>' +
+      '</div>' +
+      '<div class="fieldDisplay">' +
+      '<div class="fieldLabel">select-label:</div>' +
+      '<div class="fieldValue">opt-value-2</div>' +
+      '</div>' +
+      '<div class="fieldDisplay">' +
+      '<img src="test-data-url">' +
+      `</div></div>`,
   );
 });

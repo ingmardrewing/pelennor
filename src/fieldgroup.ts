@@ -12,31 +12,44 @@ export class FieldGroup implements IRenderable {
     this.fields.push(field);
   }
 
-  public renderForReading(): string {
-    return `<div>${this.renderFieldsForReading()}</div>`;
-  }
-
-  public renderFieldsForReading(): string {
-    const fieldsHtml: string[] = [];
+  public prepareForReading(): HTMLElement {
+    const div: HTMLElement = document.createElement('div');
     for (const f of this.fields) {
-      fieldsHtml.push(f.renderForReading());
+      div.appendChild(f.prepareForReading());
     }
-    return fieldsHtml.join('\n');
+    return div;
   }
 
-  public renderForEditing(): string {
-    return `<form id="${this.id}">
-${this.renderFieldsForEditing()}
-  <a id="${this.id}-save">save</a>
-  <a id="${this.id}-cancel">cancel</a>
-</form>`;
-  }
+  public prepareForEditing(): HTMLElement {
+    const save: HTMLElement = document.createElement('a');
+    save.setAttribute('id', this.cssIdForElementClickedToSave());
+    save.textContent = 'save';
 
-  public renderFieldsForEditing(): string {
-    const fieldsHtml: string[] = [];
+    const cancel: HTMLElement = document.createElement('a');
+    cancel.setAttribute('id', this.cssIdForElementClickedToCancel());
+    cancel.textContent = 'cancel';
+
+    const form: HTMLElement = document.createElement('form');
+    form.setAttribute('id', this.id);
     for (const f of this.fields) {
-      fieldsHtml.push(f.renderForEditing());
+      form.appendChild(f.prepareForEditing());
     }
-    return fieldsHtml.join('\n');
+    form.appendChild(save);
+    form.appendChild(cancel);
+    return form;
+  }
+
+  public cssIdForElementClickedToSave(): string {
+    return `${this.id}-save`;
+  }
+
+  public cssIdForElementClickedToCancel(): string {
+    return `${this.id}-cancel`;
+  }
+
+  public storeInput(): void {
+    for (const f of this.fields) {
+      f.storeInput();
+    }
   }
 }

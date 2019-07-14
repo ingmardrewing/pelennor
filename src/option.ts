@@ -1,6 +1,4 @@
-import { IRenderable } from './irenderable';
-
-export class Option implements IRenderable {
+export class Option {
   public label: string = '';
   public name: string = '';
   public value: any = null;
@@ -27,28 +25,37 @@ export class Option implements IRenderable {
     this.isCheckbox = true;
   }
 
-  public renderForEditing(): string {
+  public prepareForEditing(): HTMLElement {
     if (this.isCheckbox) {
+      const cb: HTMLElement = document.createElement('input');
+      cb.setAttribute('type', 'checkbox');
+      cb.setAttribute('name', this.name);
+      cb.setAttribute('value', this.value);
       if (this.isSelected) {
-        return `<div><input name="${this.name}" value="${this.value}" checked="checked">${this.label}</div>`;
+        cb.setAttribute('checked', 'checked');
       }
-      return `<div><input name="${this.name}" value="${this.value}">${this.label}</div>`;
+      const label = document.createTextNode(this.label);
+
+      const div: HTMLElement = document.createElement('div');
+      div.appendChild(cb);
+      div.appendChild(label);
+      return div;
     } else {
+      const opt: HTMLElement = document.createElement('option');
+      opt.setAttribute('value', this.value);
+      opt.textContent = this.label;
       if (this.isSelected) {
-        return `<option value="${this.value}" selected="selected">${this.label}</option>`;
+        opt.setAttribute('selected', 'selected');
       }
-      return `<option value="${this.value}">${this.label}</option>`;
+      return opt;
     }
   }
 
-  public renderForReading(): string {
+  public prepareForReading(): HTMLElement {
+    const span = document.createElement('span');
     if (this.isSelected) {
-      if (this.isCheckbox) {
-        return this.value.toString();
-      } else {
-        return this.value.toString();
-      }
+      span.textContent = this.value.toString();
     }
-    return '';
+    return span;
   }
 }
