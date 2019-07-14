@@ -6,10 +6,11 @@ import { TextArea } from './textarea';
 import { TextField } from './textfield';
 
 test('FieldGroup rendering', () => {
+
+  let t :string="" 
   const fg = new FieldGroup(
-    () => {},
-    () => {}
-  );
+    () => {t="saved"},
+    () => {t="cancelled"});
   fg.setId('test-id');
 
   const tf = new TextField();
