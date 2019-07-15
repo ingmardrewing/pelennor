@@ -49,7 +49,7 @@ export class FieldGroup {
     const cancel: HTMLElement = document.createElement('a');
     cancel.setAttribute('id', `${this.id}-cancel`);
     cancel.textContent = 'cancel';
-    save.addEventListener('click', () => {
+    cancel.addEventListener('click', () => {
       this.cancelFn();
     });
 
