@@ -10,8 +10,8 @@ export class AbstractField implements IField {
   public options: Option[] = [];
 
   constructor(name: string) {
-    if(!name) {
-      throw(new Error("A field needs a name ..."))
+    if (!name) {
+      throw new Error('A field needs a name ...');
     }
     this.name = name;
   }
