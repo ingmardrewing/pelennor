@@ -15,7 +15,7 @@ test('CheckBoxes', () => {
   expect(cb.prepareForEditing().outerHTML).toBe(
     `<div class="fieldEdit">` +
       '<label for="test-id">test-label:</label>' +
-      '<div><div><input type="checkbox" name="opt-1-name" value="opt-1-value">opt-1-label</div>' +
+      '<div><div><input type="checkbox" name="opt-1-name" id="opt-1-name" value="opt-1-value">opt-1-label</div>' +
       `</div></div>`,
   );
 
@@ -24,7 +24,7 @@ test('CheckBoxes', () => {
   expect(cb.prepareForEditing().outerHTML).toBe(
     `<div class="fieldEdit">` +
       '<label for="test-id">test-label:</label>' +
-      '<div><div><input type="checkbox" name="opt-1-name" value="opt-1-value" checked="checked">opt-1-label</div>' +
+      '<div><div><input type="checkbox" name="opt-1-name" id="opt-1-name" value="opt-1-value" checked="checked">opt-1-label</div>' +
       `</div></div>`,
   );
 

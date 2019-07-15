@@ -25,6 +25,9 @@ export class Option {
     this.isSelected = true;
   }
 
+  public setUnselected(): void {
+    this.isSelected = false;
+  }
   public setIsCheckbox(): void {
     this.isCheckbox = true;
   }
@@ -34,6 +37,7 @@ export class Option {
       const cb: HTMLElement = document.createElement('input');
       cb.setAttribute('type', 'checkbox');
       cb.setAttribute('name', this.name);
+      cb.setAttribute('id', this.name);
       cb.setAttribute('value', this.value);
       if (this.isSelected) {
         cb.setAttribute('checked', 'checked');
