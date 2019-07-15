@@ -27,6 +27,6 @@ export class Select extends AbstractField implements IField {
     const select = document.getElementById(this.id) as HTMLSelectElement;
     const sel = select.selectedIndex;
     const opt = select.options[sel] as HTMLOptionElement;
-    this.value = opt.value;
+    this.setValue(opt.value);
   }
 }
