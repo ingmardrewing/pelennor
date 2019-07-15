@@ -1,7 +1,7 @@
 import { AbstractField } from './abstractfield';
-import { IRenderable } from './irenderable';
+import { IField } from './ifield';
 
-export class Select extends AbstractField implements IRenderable {
+export class Select extends AbstractField implements IField {
   public prepareForEditing(): HTMLElement {
     const label: HTMLElement = this.getLabel();
     const select: HTMLElement = this.getSelect();

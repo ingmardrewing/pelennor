@@ -1,7 +1,7 @@
 import { AbstractField } from './abstractfield';
-import { IRenderable } from './irenderable';
+import { IField } from './ifield';
 
-export class TextField extends AbstractField implements IRenderable {
+export class TextField extends AbstractField implements IField {
   protected getInputElement(): HTMLElement {
     const input: HTMLElement = document.createElement('input');
     input.setAttribute('id', this.id);

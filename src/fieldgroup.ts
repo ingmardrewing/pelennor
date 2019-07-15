@@ -1,8 +1,8 @@
-import { IRenderable } from './irenderable';
+import { IField } from './ifield';
 
-export class FieldGroup implements IRenderable {
+export class FieldGroup {
   public id: string = '';
-  public fields: IRenderable[] = [];
+  public fields: IField[] = [];
 
   private saveFn: () => void;
   private cancelFn: () => void;
@@ -16,8 +16,17 @@ export class FieldGroup implements IRenderable {
     this.id = id;
   }
 
-  public addField(field: IRenderable) {
+  public addField(field: IField) {
     this.fields.push(field);
+  }
+
+  public getField(fieldName: string): any {
+    for (const f of this.fields) {
+      if (f.name === fieldName) {
+        return f;
+      }
+    }
+    return null;
   }
 
   public prepareForReading(): HTMLElement {

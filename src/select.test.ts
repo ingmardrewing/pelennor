@@ -2,13 +2,12 @@ import { Option } from './option';
 import { Select } from './select';
 
 test('Select', () => {
-  const s = new Select();
+  const s = new Select('test-name');
   s.setId('test-id');
-  s.setName('test-name');
   s.setLabel('test-label');
   s.setValue('opt-value-2');
 
-  const o1 = new Option();
+  const o1 = new Option('option-label-1');
   o1.setLabel('opt-label-1');
   o1.setValue('opt-value-1');
 

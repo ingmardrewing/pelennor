@@ -1,7 +1,7 @@
 import { AbstractField } from './abstractfield';
-import { IRenderable } from './irenderable';
+import { IField } from './ifield';
 
-export class TextArea extends AbstractField implements IRenderable {
+export class TextArea extends AbstractField implements IField {
   protected getInputElement(): HTMLElement {
     const input: HTMLElement = document.createElement('textarea');
     input.setAttribute('id', this.id);

@@ -1,7 +1,7 @@
 import { AbstractField } from './abstractfield';
-import { IRenderable } from './irenderable';
+import { IField } from './ifield';
 
-export class Image extends AbstractField implements IRenderable {
+export class Image extends AbstractField implements IField {
   public prepareForReading(): HTMLElement {
     if (this.value) {
       const img: HTMLElement = document.createElement('img');

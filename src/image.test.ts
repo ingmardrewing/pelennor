@@ -1,9 +1,8 @@
 import { Image } from './image';
 
 test('Image', () => {
-  const img = new Image();
+  const img = new Image('test-name');
   img.setId('test-id');
-  img.setName('test-name');
   img.setLabel('test-label');
   img.setValue('test-data-url');
 

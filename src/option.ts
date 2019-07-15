@@ -5,6 +5,10 @@ export class Option {
   public isSelected: boolean = false;
   public isCheckbox: boolean = false;
 
+  constructor(name: string) {
+    this.name = name;
+  }
+
   public setLabel(label: string): void {
     this.label = label;
   }
@@ -13,8 +17,8 @@ export class Option {
     this.value = value;
   }
 
-  public setName(name: any): void {
-    this.name = name;
+  public getValue(): any {
+    return this.value;
   }
 
   public setSelected(): void {

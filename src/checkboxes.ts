@@ -1,8 +1,8 @@
 import { AbstractField } from './abstractfield';
-import { IRenderable } from './irenderable';
+import { IField } from './ifield';
 import { Option } from './option';
 
-export class CheckBoxes extends AbstractField implements IRenderable {
+export class CheckBoxes extends AbstractField implements IField {
   public addOption(opt: Option): void {
     opt.setIsCheckbox();
     this.options.push(opt);
@@ -20,6 +20,16 @@ export class CheckBoxes extends AbstractField implements IRenderable {
     container.appendChild(this.getLabel());
     container.appendChild(this.getSelectableOptions());
     return container;
+  }
+
+  public getValue(): any {
+    const values: string[] = [];
+    for (const o of this.options) {
+      if (o.isSelected) {
+        values.push(o.getValue());
+      }
+    }
+    return values;
   }
 
   private getSelectedOptions(): HTMLElement {

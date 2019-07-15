@@ -1,6 +1,7 @@
+import { IField } from './ifield';
 import { Option } from './option';
 
-export class AbstractField {
+export class AbstractField implements IField {
   public id: string = '';
   public name: string = '';
   public label: string = '';
@@ -8,7 +9,10 @@ export class AbstractField {
   public value: any = null;
   public options: Option[] = [];
 
-  public setName(name: string): void {
+  constructor(name: string) {
+    if(!name) {
+      throw(new Error("A field needs a name ..."))
+    }
     this.name = name;
   }
 
@@ -22,6 +26,10 @@ export class AbstractField {
 
   public setValue(value: any): void {
     this.value = value;
+  }
+
+  public getValue(): any {
+    return this.value;
   }
 
   public addOption(option: Option): void {

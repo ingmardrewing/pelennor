@@ -17,48 +17,44 @@ test('FieldGroup rendering', () => {
   );
   fg.setId('test-id');
 
-  const tf = new TextField();
+  const tf = new TextField('field-name');
   tf.setId('field-id');
   tf.setLabel('field-label');
-  tf.setName('field-name');
   tf.setValue('field-value');
 
   fg.addField(tf);
 
-  const ta = new TextArea();
+  const ta = new TextArea('ta-field-name');
   ta.setId('ta-field-id');
   ta.setLabel('ta-field-label');
-  ta.setName('ta-field-name');
   ta.setValue('ta-field-value');
 
   fg.addField(ta);
 
-  const s = new Select();
+  const s = new Select('test-name');
   s.setId('test-id');
-  s.setName('test-name');
   s.setLabel('select-label');
   s.setValue('opt-value-2');
 
-  const o1 = new Option();
+  const o1 = new Option('opt-label-1');
   o1.setLabel('opt-label-1');
   o1.setValue('opt-value-1');
   s.addOption(o1);
 
-  const o2 = new Option();
+  const o2 = new Option('opt-label-2');
   o2.setLabel('opt-label-2');
   o2.setValue('opt-value-2');
   s.addOption(o2);
 
-  const o3 = new Option();
+  const o3 = new Option('opt-label-3');
   o3.setLabel('opt-label-3');
   o3.setValue('opt-value-3');
   s.addOption(o3);
 
   fg.addField(s);
 
-  const img = new Image();
+  const img = new Image('test-name');
   img.setId('test-id');
-  img.setName('test-name');
   img.setLabel('test-label');
   img.setValue('test-data-url');
 

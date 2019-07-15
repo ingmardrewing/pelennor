@@ -2,13 +2,11 @@ import { CheckBoxes } from './checkboxes';
 import { Option } from './option';
 
 test('CheckBoxes', () => {
-  const cb = new CheckBoxes();
+  const cb = new CheckBoxes('test-name');
   cb.setId('test-id');
-  cb.setName('test-name');
   cb.setLabel('test-label');
 
-  const o1 = new Option();
-  o1.setName('opt-1-name');
+  const o1 = new Option('opt-1-name');
   o1.setValue('opt-1-value');
   o1.setLabel('opt-1-label');
 
