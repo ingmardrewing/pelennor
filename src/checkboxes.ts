@@ -35,14 +35,13 @@ export class CheckBoxes extends AbstractField implements IField {
   public storeInput(): void {
     for (const o of this.options) {
       if (o === null) {
-        continue
+        continue;
       }
-      const cb = document.getElementById(o.name) as HTMLInputElement
-      if(cb.checked) {
-        o.setSelected()
-      }
-      else {
-        o.setUnselected()
+      const cb = document.getElementById(o.name) as HTMLInputElement;
+      if (cb.checked) {
+        o.setSelected();
+      } else {
+        o.setUnselected();
       }
     }
   }

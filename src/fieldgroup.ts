@@ -1,71 +1,71 @@
-import { IField } from './ifield'
+import { IField } from './ifield';
 
 export class FieldGroup {
-  public id: string = ''
-  public fields: IField[] = []
+  public id: string = '';
+  public fields: IField[] = [];
 
-  private saveFn: () => void
-  private cancelFn: () => void
+  private saveFn: () => void;
+  private cancelFn: () => void;
 
   constructor(saveFn: () => void, cancelFn: () => void) {
-    this.saveFn = saveFn
-    this.cancelFn = cancelFn
+    this.saveFn = saveFn;
+    this.cancelFn = cancelFn;
   }
 
   public setId(id: string) {
-    this.id = id
+    this.id = id;
   }
 
   public addField(field: IField) {
-    this.fields.push(field)
+    this.fields.push(field);
   }
 
   public getField(fieldName: string): any {
     for (const f of this.fields) {
       if (f.name === fieldName) {
-        return f
+        return f;
       }
     }
-    return null
+    return null;
   }
 
   public prepareForReading(): HTMLElement {
-    const div: HTMLElement = document.createElement('div')
+    const div: HTMLElement = document.createElement('div');
     for (const f of this.fields) {
-      div.appendChild(f.prepareForReading())
+      div.appendChild(f.prepareForReading());
     }
-    return div
+    return div;
   }
 
   public prepareForEditing(): HTMLElement {
-    const save: HTMLElement = document.createElement('a')
-    save.setAttribute('id', `${this.id}-save`)
-    save.textContent = 'save'
+    const save: HTMLElement = document.createElement('a');
+    save.setAttribute('id', `${this.id}-save`);
+    save.textContent = 'save';
     save.addEventListener('click', () => {
-      this.storeInput()
-      this.saveFn()
-    })
+      this.storeInput();
+      this.saveFn();
+    });
 
-    const cancel: HTMLElement = document.createElement('a')
-    cancel.setAttribute('id', `${this.id}-cancel`)
-    cancel.textContent = 'cancel'
+    const cancel: HTMLElement = document.createElement('a');
+    cancel.setAttribute('id', `${this.id}-cancel`);
+    cancel.textContent = 'cancel';
     save.addEventListener('click', () => {
-      this.cancelFn()
-    })
+      this.cancelFn();
+    });
 
-    const form: HTMLElement = document.createElement('form')
-    form.setAttribute('id', this.id)
+    const form: HTMLElement = document.createElement('form');
+    form.setAttribute('id', this.id);
     for (const f of this.fields) {
-      form.appendChild(f.prepareForEditing())
+      form.appendChild(f.prepareForEditing());
     }
-    form.appendChild(save)
-    form.appendChild(cancel)
-    return form
+    form.appendChild(save);
+    form.appendChild(cancel);
+    return form;
   }
 
   public storeInput(): void {
     for (const f of this.fields) {
-      f.storeInput()
+      f.storeInput();
     }
   }
 }
