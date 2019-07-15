@@ -13,9 +13,9 @@ export class Fields extends Builder {
   private saveFn: () => void;
   private cancelFn: () => void;
 
-  constructor(id:string) {
+  constructor(id: string) {
     super();
-    this.id = id
+    this.id = id;
     this.saveFn = () => {
       alert('no save fn set');
     };
