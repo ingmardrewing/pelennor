@@ -13,21 +13,25 @@ export class Option {
     this.label = label;
   }
 
-  public setValue(value: any): void {
+  public setValue(value: any): Option {
     this.value = value;
+    return this;
   }
 
   public getValue(): any {
     return this.value;
   }
 
-  public setSelected(): void {
+  public setSelected(): Option {
     this.isSelected = true;
+    return this;
   }
 
-  public setUnselected(): void {
+  public setUnselected(): Option {
     this.isSelected = false;
+    return this;
   }
+
   public setIsCheckbox(): void {
     this.isCheckbox = true;
   }

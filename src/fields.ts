@@ -1,15 +1,27 @@
+import { Builder } from './builder';
+import { CheckBoxes } from './checkboxes';
 import { IField } from './ifield';
+import { Image } from './image';
+import { Select } from './select';
+import { TextArea } from './textarea';
+import { TextField } from './textfield';
 
-export class Fields {
-  public id: string = ''
-  public fields: IField[] = []
+export class Fields extends Builder {
+  public id: string = '';
+  public fields: IField[] = [];
 
-  private saveFn: () => void
-  private cancelFn: () => void
+  private saveFn: () => void;
+  private cancelFn: () => void;
 
-  constructor() {
-    this.saveFn = () => {alert("no save fn set")}
-    this.cancelFn = () => {alert("no cancel fn set")}
+  constructor(id:string) {
+    super();
+    this.id = id
+    this.saveFn = () => {
+      alert('no save fn set');
+    };
+    this.cancelFn = () => {
+      alert('no cancel fn set');
+    };
   }
 
   public setSaveCallback(saveFn: () => void) {
@@ -22,6 +34,36 @@ export class Fields {
 
   public setId(id: string) {
     this.id = id;
+  }
+
+  public addTextField(name: string): TextField {
+    const tf: TextField = this.buildTextField(name);
+    this.addField(tf);
+    return tf;
+  }
+
+  public addTextArea(name: string): TextArea {
+    const ta: TextArea = this.buildTextArea(name);
+    this.addField(ta);
+    return ta;
+  }
+
+  public addCheckBoxes(name: string): CheckBoxes {
+    const cbx: CheckBoxes = this.buildCheckBoxes(name);
+    this.addField(cbx);
+    return cbx;
+  }
+
+  public addSelect(name: string): Select {
+    const select: Select = this.buildSelect(name);
+    this.addField(select);
+    return select;
+  }
+
+  public addImage(name: string): Image {
+    const image: Image = this.buildImage(name);
+    this.addField(image);
+    return image;
   }
 
   public addField(field: IField) {

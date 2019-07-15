@@ -3,6 +3,6 @@ export interface IField {
   prepareForReading(): HTMLElement;
   prepareForEditing(): HTMLElement;
   storeInput(): void;
-  setValue(value: any): void;
+  setValue(value: any): IField;
   getValue(): any;
 }

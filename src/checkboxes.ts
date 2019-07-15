@@ -1,11 +1,12 @@
-import { AbstractField } from './abstractfield';
 import { IField } from './ifield';
+import { Opter } from './opter';
 import { Option } from './option';
 
-export class CheckBoxes extends AbstractField implements IField {
-  public addOption(opt: Option): void {
-    opt.setIsCheckbox();
-    this.options.push(opt);
+export class CheckBoxes extends Opter implements IField {
+  public addOption(name: string): Option {
+    const o: Option = super.addOption(name);
+    o.setIsCheckbox();
+    return o;
   }
 
   public prepareForReading(): HTMLElement {

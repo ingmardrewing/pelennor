@@ -1,7 +1,7 @@
-import { AbstractField } from './abstractfield';
 import { IField } from './ifield';
+import { Opter } from './opter';
 
-export class Select extends AbstractField implements IField {
+export class Select extends Opter implements IField {
   public prepareForEditing(): HTMLElement {
     const label: HTMLElement = this.getLabel();
     const select: HTMLElement = this.getSelect();
@@ -21,6 +21,10 @@ export class Select extends AbstractField implements IField {
       select.appendChild(o.prepareForEditing());
     }
     return select;
+  }
+
+  public setValue(value: any): Select {
+    return super.setValue(value) as Select;
   }
 
   public storeInput(): void {

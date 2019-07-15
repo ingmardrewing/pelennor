@@ -1,6 +1,6 @@
 export { AbstractField } from './abstractfield';
 export { CheckBoxes } from './checkboxes';
-export { FieldGroup } from './fieldgroup';
+export { Fields } from './fields';
 export { Image } from './image';
 export { IField } from './ifield';
 export { Option } from './option';

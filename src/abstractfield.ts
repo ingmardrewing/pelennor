@@ -1,5 +1,4 @@
 import { IField } from './ifield';
-import { Option } from './option';
 
 export class AbstractField implements IField {
   public id: string = '';
@@ -7,7 +6,6 @@ export class AbstractField implements IField {
   public label: string = '';
   public description: string = '';
   public value: any = null;
-  public options: Option[] = [];
 
   constructor(name: string) {
     if (!name) {
@@ -24,16 +22,13 @@ export class AbstractField implements IField {
     this.description = description;
   }
 
-  public setValue(value: any): void {
+  public setValue(value: any): IField {
     this.value = value;
+    return this;
   }
 
   public getValue(): any {
     return this.value;
-  }
-
-  public addOption(option: Option): void {
-    this.options.push(option);
   }
 
   public storeInput(): void {
