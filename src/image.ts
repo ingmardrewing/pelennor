@@ -30,7 +30,7 @@ export class Image extends AbstractField implements IField {
       reader.addEventListener(
         'load',
         loaded => {
-          const dataUrlInput: any = document.querySelector('#${this.id}');
+          const dataUrlInput: any = document.querySelector(`#${this.id}`);
           if (dataUrlInput !== null && reader !== null && reader.result !== null) {
             dataUrlInput.val(reader.result.toString());
           }
