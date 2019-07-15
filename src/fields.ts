@@ -1,15 +1,15 @@
 import { IField } from './ifield';
 
-export class FieldGroup {
-  public id: string = '';
-  public fields: IField[] = [];
+export class Fields {
+  public id: string = ''
+  public fields: IField[] = []
 
-  private saveFn: () => void;
-  private cancelFn: () => void;
+  private saveFn: () => void
+  private cancelFn: () => void
 
-  constructor(saveFn: () => void, cancelFn: () => void) {
-    this.saveFn = saveFn;
-    this.cancelFn = cancelFn;
+  constructor() {
+    this.saveFn = () => {alert("no save fn set")}
+    this.cancelFn = () => {alert("no cancel fn set")}
   }
 
   public setSaveCallback(saveFn: () => void) {

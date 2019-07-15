@@ -1,64 +1,57 @@
-import { FieldGroup } from './fieldgroup';
-import { Image } from './image';
-import { Option } from './option';
-import { Select } from './select';
-import { TextArea } from './textarea';
-import { TextField } from './textfield';
+import { Fields } from './fields'
+import { Image } from './image'
+import { Option } from './option'
+import { Select } from './select'
+import { TextArea } from './textarea'
+import { TextField } from './textfield'
 
-test('FieldGroup rendering', () => {
-  let t: string = '';
-  const fg = new FieldGroup(
-    () => {
-      t = 'saved';
-    },
-    () => {
-      t = 'cancelled';
-    },
-  );
-  fg.setId('test-id');
+test('Fields rendering', () => {
+  let t: string = ''
+  const fg = new Fields ()
+  fg.setId('test-id')
 
-  const tf = new TextField('field-name');
-  tf.setId('field-id');
-  tf.setLabel('field-label');
-  tf.setValue('field-value');
+  const tf = new TextField('field-name')
+  tf.setId('field-id')
+  tf.setLabel('field-label')
+  tf.setValue('field-value')
 
-  fg.addField(tf);
+  fg.addField(tf)
 
-  const ta = new TextArea('ta-field-name');
-  ta.setId('ta-field-id');
-  ta.setLabel('ta-field-label');
-  ta.setValue('ta-field-value');
+  const ta = new TextArea('ta-field-name')
+  ta.setId('ta-field-id')
+  ta.setLabel('ta-field-label')
+  ta.setValue('ta-field-value')
 
-  fg.addField(ta);
+  fg.addField(ta)
 
-  const s = new Select('test-name');
-  s.setId('test-id');
-  s.setLabel('select-label');
-  s.setValue('opt-value-2');
+  const s = new Select('test-name')
+  s.setId('test-id')
+  s.setLabel('select-label')
+  s.setValue('opt-value-2')
 
-  const o1 = new Option('opt-label-1');
-  o1.setLabel('opt-label-1');
-  o1.setValue('opt-value-1');
-  s.addOption(o1);
+  const o1 = new Option('opt-label-1')
+  o1.setLabel('opt-label-1')
+  o1.setValue('opt-value-1')
+  s.addOption(o1)
 
-  const o2 = new Option('opt-label-2');
-  o2.setLabel('opt-label-2');
-  o2.setValue('opt-value-2');
-  s.addOption(o2);
+  const o2 = new Option('opt-label-2')
+  o2.setLabel('opt-label-2')
+  o2.setValue('opt-value-2')
+  s.addOption(o2)
 
-  const o3 = new Option('opt-label-3');
-  o3.setLabel('opt-label-3');
-  o3.setValue('opt-value-3');
-  s.addOption(o3);
+  const o3 = new Option('opt-label-3')
+  o3.setLabel('opt-label-3')
+  o3.setValue('opt-value-3')
+  s.addOption(o3)
 
-  fg.addField(s);
+  fg.addField(s)
 
-  const img = new Image('test-name');
-  img.setId('test-id');
-  img.setLabel('test-label');
-  img.setValue('test-data-url');
+  const img = new Image('test-name')
+  img.setId('test-id')
+  img.setLabel('test-label')
+  img.setValue('test-data-url')
 
-  fg.addField(img);
+  fg.addField(img)
 
   expect(fg.prepareForEditing().outerHTML).toBe(
     `<form id="test-id">` +
@@ -85,7 +78,7 @@ test('FieldGroup rendering', () => {
       '<a id="test-id-save">save</a>' +
       '<a id="test-id-cancel">cancel</a>' +
       `</form>`,
-  );
+  )
 
   expect(fg.prepareForReading().outerHTML).toBe(
     `<div><div class="fieldDisplay">` +
@@ -103,5 +96,5 @@ test('FieldGroup rendering', () => {
       '<div class="fieldDisplay">' +
       '<img src="test-data-url">' +
       `</div></div>`,
-  );
-});
+  )
+})
