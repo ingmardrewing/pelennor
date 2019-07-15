@@ -12,6 +12,14 @@ export class FieldGroup {
     this.cancelFn = cancelFn;
   }
 
+  public setSaveCallback(saveFn: () => void) {
+    this.saveFn = saveFn;
+  }
+
+  public setCancelCallback(cancelFn: () => void) {
+    this.cancelFn = cancelFn;
+  }
+
   public setId(id: string) {
     this.id = id;
   }
