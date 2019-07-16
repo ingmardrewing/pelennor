@@ -1,5 +1,5 @@
 export interface IField {
-  name: string;
+  label: string;
   prepareForReading(): HTMLElement;
   prepareForEditing(): HTMLElement;
   storeInput(): void;

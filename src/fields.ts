@@ -77,9 +77,9 @@ export class Fields extends Builder {
     this.fields.push(field);
   }
 
-  public getField(fieldName: string): any {
+  public getField(fieldLabel: string): any {
     for (const f of this.fields) {
-      if (f.name === fieldName) {
+      if (f.label === fieldLabel) {
         return f;
       }
     }
