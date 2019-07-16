@@ -1,5 +1,6 @@
 import { CheckBoxes } from './checkboxes';
 import { Image } from './image';
+import { NumberField } from './numberfield';
 import { Select } from './select';
 import { Stringer } from './stringer';
 import { TextArea } from './textarea';
@@ -12,6 +13,14 @@ export class Builder extends Stringer {
     tf.setLabel(name);
     tf.setId(`pelennor-textfield-${this.clean(name)}`);
     return tf;
+  }
+
+  public buildNumberField(name: string): NumberField {
+    this.check(this.clean(name));
+    const n: NumberField = new NumberField(this.clean(name));
+    n.setLabel(name);
+    n.setId(`pelennor-numberfield-${this.clean(name)}`);
+    return n;
   }
 
   public buildTextArea(name: string): TextArea {
@@ -41,7 +50,7 @@ export class Builder extends Stringer {
     this.check(this.clean(name));
     const image: Image = new Image(this.clean(name));
     image.setLabel(name);
-    image.setId(`pelennor-select-${this.clean(name)}`);
+    image.setId(`pelennor-image-${this.clean(name)}`);
     return image;
   }
 }

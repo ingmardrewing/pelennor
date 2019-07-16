@@ -2,6 +2,7 @@ import { Builder } from './builder';
 import { CheckBoxes } from './checkboxes';
 import { IField } from './ifield';
 import { Image } from './image';
+import { NumberField } from './numberfield';
 import { Select } from './select';
 import { TextArea } from './textarea';
 import { TextField } from './textfield';
@@ -34,6 +35,12 @@ export class Fields extends Builder {
 
   public setId(id: string) {
     this.id = id;
+  }
+
+  public addNumberField(name: string): NumberField {
+    const nf: NumberField = this.buildNumberField(name);
+    this.addField(nf);
+    return nf;
   }
 
   public addTextField(name: string): TextField {
